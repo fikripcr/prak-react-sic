@@ -1,7 +1,13 @@
-export default function ResponsiveText() {
+export default function ResponsiveDesign() {
   return (
-    <div>
-      <p className="text-sm md:text-red-500 lg:text-blue-500 xl:text-2xl mb-4">
+    <>
+      <p
+        className="text-sm
+            md:text-blue-500 md:text-md 
+            lg:text-red-500 lg:text-lg
+            xl:text-yellow-200 xl:text-2xl
+            mb-4"
+      >
         Coba lakukan zoom in atau zoom out. Perhatikan bahwa ukuran teks akan
         menyesuaikan dengan ukuran layar.
         <br />
@@ -9,8 +15,8 @@ export default function ResponsiveText() {
         xl:xxx) dan lihat perbedaannya!
       </p>
       <ResponsiveWidth />
-      <ResponsiveLayout />
-    </div>
+      <ResponsiveLayout/>
+    </>
   );
 }
 

@@ -6,10 +6,11 @@ export default function FrameworkListSearchFilter() {
   // const [searchTerm, setSearchTerm] = useState("");
   // const [selectedTag, setSelectedTag] = useState("");
 
-  /*Inisialisasi DataForm*/
+    /*Inisialisasi DataForm*/
 		const [dataForm, setDataForm] = useState({
 			searchTerm: "",
 			selectedTag: "",
+			searchDev: "",
 			/*Tambah state lain beserta default value*/
 			});
 		
@@ -30,6 +31,7 @@ export default function FrameworkListSearchFilter() {
       framework.description.toLowerCase().includes(_searchTerm) ||
       framework.details.developer.toLowerCase().includes(_searchTerm) ||
       framework.details.releaseYear.toString().includes(_searchTerm);
+
     const matchesTag = dataForm.selectedTag
       ? framework.tags.includes(dataForm.selectedTag)
       : true;
@@ -43,51 +45,100 @@ export default function FrameworkListSearchFilter() {
   ];
 
   return (
-    <div className="min-h-screen p-8 bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div className="col-span-2">
-        <input
-          type="text"
-          name="searchTerm"
-          placeholder="Search framework..."
-          // Menambahkan 'self-start' di sini
-          className="w-full p-2 border border-gray-300 rounded mb-4 self-start"
-          onChange={handleChange}
-        />
+    <div className="p-6 sm:p-8 bg-gray-50 min-h-screen">
+      <input
+        type="text"
+        name="searchTerm"
+        placeholder="Search framework..."
+        className="w-full p-2 border border-gray-300 rounded mb-4"
+        onChange={handleChange}
+      />
 
-        <select
-          name="selectedTag"
-          // Menambahkan 'self-start' di sini
-          className="w-full p-2 border border-gray-300 rounded mb-4 self-start"
-          onChange={handleChange}
-        >
-          <option value="">All Tags</option>
-          {allTags.map((tag, index) => (
-            <option key={index} value={tag}>
-              {tag}
-            </option>
-          ))}
-        </select>
-      </div>
+      <input
+        type="text"
+        name="searchDev"
+        placeholder="Search Developer..."
+        className="w-full p-2 border border-gray-300 rounded mb-4"
+        onChange={handleChange}
+      />
+
+      <select
+        name="selectedTag"
+        className="w-full p-2 border border-gray-300 rounded mb-4"
+        onChange={handleChange}
+      >
+        <option value="">All Tags</option>
+        {allTags.map((tag, index) => (
+          <option key={index} value={tag}>
+            {tag}
+          </option>
+        ))}
+      </select>
 
       {filteredFrameworks.map((item) => (
         <div
           key={item.id}
-          className="flex flex-col bg-white border border-gray-100 p-6 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+          className="bg-white border rounded-xl shadow-sm hover:shadow-md hover:-translate-7 transition-all duration-1000 mb-6 p-6"
         >
-          <h2 className="text-xl font-bold text-gray-800 mb-2">{item.name}</h2>
-          <p className="text-gray-600 text-sm leading-relaxed mb-4 flex-grow">
-            {item.description}
-          </p>
-          <p className="text-xs font-medium text-gray-500 bg-gray-50 rounded-md px-3 py-1.5 w-fit mb-6">
-            {item.details.developer} {item.details.releaseYear}
-          </p>
+          {/* Header */}
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex-1">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">
+                {item.name}
+              </h2>
+              <p className="text-gray-600 leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+
+            {/* Icon */}
+            <div className="ml-4 w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center shadow-md">
+              <svg
+                className="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+            </div>
+          </div>
+
+          {/* Developer Info */}
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 rounded-lg p-3 mb-4">
+            <span className="font-semibold text-gray-800">
+              {item.details.developer}
+            </span>
+            <span className="ml-2 px-2 py-1 bg-blue-100 text-blue-800 text-sm font-bold rounded-full">
+              {item.details.releaseYear}
+            </span>
+          </div>
+
+          {/* Website Button */}
           <a
-            href={item.details.officialWebsite}
+            href={item.details.officialwebsite}
             target="_blank"
-            className="mt-auto block w-full text-center px-4 py-2.5 text-sm font-semibold text-blue-600 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors duration-200"
+            className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 mb-4"
           >
-            Visit Website
+            🌐 Visit Website
           </a>
+
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2">
+            {item.tags.map((tag, index) => (
+              <span
+                key={index}
+                className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full hover:bg-gray-200 transition-colors duration-200"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       ))}
     </div>

@@ -3,6 +3,7 @@ export default function Container({children}){
         <div>
             <h1>Pemrograman Framework Lanjutan</h1>
             <br/>
+                  <img src="img/minecraft.png" width="100%"/>
                 {children}
             <br/>
             <footer>

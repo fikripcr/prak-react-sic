@@ -1,14 +1,13 @@
 import { createRoot } from "react-dom/client";
-import './tailwind.css'
 import FrameworkList from "./FrameworkList";
+import "./tailwind.css"
 import FrameworkListSearchFilter from "./FrameworkListSearchFilter";
-import ResponsiveText from "./ResponsiveDesign";
+import ResponsiveDesign from "./ResponsiveDesign";
 
 createRoot(document.getElementById("root"))
     .render(
         <div>
-           {/* <FrameworkList /> */}
-           {/* <FrameworkListSearchFilter /> */}
-           <ResponsiveText />
+            <ResponsiveDesign/>
+            {/* <FrameworkListSearchFilter/> */}
         </div>
     )
