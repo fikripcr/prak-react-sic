@@ -63,6 +63,12 @@ export default function Sidebar() {
                             Fitur XYZ
                         </NavLink>
                     </li>
+                    {/* <li>
+	                    <NavLink id="menu-4" to="/notes" className={menuClass}>
+                            <AiOutlineCodeSandbox  className="mr-4 text-xl"/>
+                            Note
+                        </NavLink>
+                    </li> */}
                 </ul>
             </div>
 

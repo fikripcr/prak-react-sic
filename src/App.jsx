@@ -6,6 +6,7 @@ import "./assets/tailwind.css";
 import { Route, Routes } from "react-router-dom";
 import Loading from "./components/Loading";
 import Components from "./pages/Components";
+import Notes from "./pages/Notes";
 // import Dashboard from "./pages/Dashboard";
 // import Orders from "./pages/Orders";
 // import Customers from "./pages/Customers";
@@ -44,6 +45,7 @@ function App() {
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/components" element={<Components />} />
           <Route path="/fitur-xyz" element={<FiturXYZ />} />
+          <Route path="/notes" element={<Notes />} />
         </Route>
 
         <Route element={<AuthLayout />}>
